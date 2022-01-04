@@ -42,15 +42,29 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  try {
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: widget.emailController.text,
-                      password: widget.passwordController.text,
-                    );
-                  } catch (error) {
-                    setState(() {
-                      errorMessage = error.toString();
-                    });
+                  if (creatingAccount == true) {
+                    try {
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
+                  } else {
+                    try {
+                      await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                        email: widget.emailController.text,
+                        password: widget.passwordController.text,
+                      );
+                    } catch (error) {
+                      setState(() {
+                        errorMessage = error.toString();
+                      });
+                    }
                     ;
                   }
                 },
@@ -66,6 +80,16 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                   child: Text('Utwórz konto'),
+                ),
+              ],
+              if (creatingAccount == true) ...[
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      creatingAccount = false;
+                    });
+                  },
+                  child: Text('Masz już konto?'),
                 ),
               ]
             ],

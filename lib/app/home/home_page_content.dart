@@ -1,3 +1,6 @@
+import 'package:best_burgers/app/home/bottom_bar_pages/account_page_content.dart';
+import 'package:best_burgers/app/home/bottom_bar_pages/add_opinion_page_content.dart';
+import 'package:best_burgers/app/home/bottom_bar_pages/opinion_page_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -21,28 +24,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Builder(builder: (context) {
         if (bottomindex == 0) {
-          return Center(
-            child: Text('Ekran pierwszy'),
-          );
+          return OpinionPage();
         }
         if (bottomindex == 1) {
-          return Center(child: Text('Ekran drugi'));
+          return AddOpinionPage();
         }
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Jestes zalogowany ${widget.user.email}'),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                },
-                child: Text('Wyloguj'),
-              ),
-            ],
-          ),
-        );
+        return AccountPage(widget: widget);
       }),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomindex,

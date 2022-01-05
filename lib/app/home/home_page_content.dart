@@ -27,7 +27,13 @@ class _HomePageState extends State<HomePage> {
           return OpinionPage();
         }
         if (bottomindex == 1) {
-          return AddOpinionPage();
+          return AddOpinionPage(
+            onAdd: () {
+              setState(() {
+                bottomindex = 0;
+              });
+            },
+          );
         }
         return AccountPage(email: widget.user.email);
       }),

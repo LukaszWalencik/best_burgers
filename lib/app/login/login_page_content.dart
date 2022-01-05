@@ -30,16 +30,16 @@ class _LoginPageState extends State<LoginPage> {
                   creatingAccount == false ? 'Zaloguj Się' : 'Zarejestruj sie'),
               TextField(
                 controller: widget.emailController,
-                decoration: InputDecoration(hintText: 'Email'),
+                decoration: const InputDecoration(hintText: 'Email'),
               ),
               TextField(
                 controller: widget.passwordController,
-                decoration: InputDecoration(hintText: 'Password'),
+                decoration: const InputDecoration(hintText: 'Password'),
                 obscureText: true,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(errorMessage),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
                   if (creatingAccount == true) {
@@ -65,13 +65,12 @@ class _LoginPageState extends State<LoginPage> {
                         errorMessage = error.toString();
                       });
                     }
-                    ;
                   }
                 },
                 child: Text(
                     creatingAccount == false ? 'Logowanie' : 'Rejestracja'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               if (creatingAccount == false) ...[
                 TextButton(
                   onPressed: () {
@@ -79,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       creatingAccount = true;
                     });
                   },
-                  child: Text('Utwórz konto'),
+                  child: const Text('Utwórz konto'),
                 ),
               ],
               if (creatingAccount == true) ...[
@@ -89,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                       creatingAccount = false;
                     });
                   },
-                  child: Text('Masz już konto?'),
+                  child: const Text('Masz już konto?'),
                 ),
               ]
             ],

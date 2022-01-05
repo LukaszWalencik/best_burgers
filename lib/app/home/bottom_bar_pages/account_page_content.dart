@@ -14,19 +14,19 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Konto'),
+        title: const Text('Konto'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Jestes zalogowany ${email}'),
-            SizedBox(height: 20),
+            Text('Jestes zalogowany $email'),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
               },
-              child: Text('Wyloguj'),
+              child: const Text('Wyloguj'),
             ),
           ],
         ),

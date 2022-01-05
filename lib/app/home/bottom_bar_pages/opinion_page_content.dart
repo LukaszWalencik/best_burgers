@@ -14,7 +14,10 @@ class OpinionPage extends StatelessWidget {
         title: Text('Ekran pierwszy'),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: FirebaseFirestore.instance.collection('places').snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('places')
+              .orderBy('rating', descending: true)
+              .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');

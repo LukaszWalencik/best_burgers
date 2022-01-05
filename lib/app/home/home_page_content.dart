@@ -19,21 +19,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Jestes zalogowany ${widget.user.email}'),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              child: Text('Wyloguj'),
-            ),
-          ],
-        ),
-      ),
+      body: Builder(builder: (context) {
+        if (bottomindex == 0) {
+          return Center(
+            child: Text('Ekran pierwszy'),
+          );
+        }
+        if (bottomindex == 1) {
+          return Center(child: Text('Ekran drugi'));
+        }
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Jestes zalogowany ${widget.user.email}'),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                },
+                child: Text('Wyloguj'),
+              ),
+            ],
+          ),
+        );
+      }),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomindex,
         onTap: (newbottomindex) {

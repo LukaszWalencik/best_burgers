@@ -57,11 +57,17 @@ class _AddOpinionPageState extends State<AddOpinionPage> {
                   }),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
-                  FirebaseFirestore.instance.collection('places').add(
-                    {'name': placeName, 'foodname': foodName, 'rating': rating},
-                  );
-                },
+                onPressed: placeName.isEmpty || foodName.isEmpty
+                    ? null
+                    : () {
+                        FirebaseFirestore.instance.collection('places').add(
+                          {
+                            'name': placeName,
+                            'foodname': foodName,
+                            'rating': rating
+                          },
+                        );
+                      },
                 child: Text('Dodaj opinie'),
               )
             ],

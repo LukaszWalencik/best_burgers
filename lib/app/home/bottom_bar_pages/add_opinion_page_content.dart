@@ -21,7 +21,7 @@ class _AddOpinionPageState extends State<AddOpinionPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Ekran drugi'),
+        title: const Text('Ekran drugi'),
       ),
       body: Center(
         child: Padding(
@@ -29,23 +29,24 @@ class _AddOpinionPageState extends State<AddOpinionPage> {
           child: Column(
             children: [
               TextField(
-                decoration: InputDecoration(hintText: 'Nazwa restauracji'),
+                decoration:
+                    const InputDecoration(hintText: 'Nazwa restauracji'),
                 onChanged: (newplaceName) {
                   setState(() {
                     placeName = newplaceName;
                   });
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 onChanged: (newfoodName) {
                   setState(() {
                     foodName = newfoodName;
                   });
                 },
-                decoration: InputDecoration(hintText: 'Nazwa dania'),
+                decoration: const InputDecoration(hintText: 'Nazwa dania'),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Slider(
                   value: rating,
                   min: 1.0,
@@ -57,7 +58,7 @@ class _AddOpinionPageState extends State<AddOpinionPage> {
                       rating = newrating;
                     });
                   }),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: placeName.isEmpty || foodName.isEmpty
                     ? null
@@ -71,7 +72,7 @@ class _AddOpinionPageState extends State<AddOpinionPage> {
                         );
                         widget.onAdd();
                       },
-                child: Text('Dodaj opinie'),
+                child: const Text('Dodaj opinie'),
               )
             ],
           ),

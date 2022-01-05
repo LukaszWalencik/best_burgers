@@ -11,7 +11,7 @@ class OpinionPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Ekran pierwszy'),
+        title: const Text('Ekran pierwszy'),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: FirebaseFirestore.instance
@@ -20,11 +20,11 @@ class OpinionPage extends StatelessWidget {
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return const Text('Something went wrong');
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return const Text("Loading");
             }
             final documents = snapshot.data!.docs;
             return ListView(children: [

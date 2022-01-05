@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({
+  const HomePage({
     Key? key,
     required this.user,
   }) : super(key: key);
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Builder(builder: (context) {
         if (bottomindex == 0) {
-          return OpinionPage();
+          return const OpinionPage();
         }
         if (bottomindex == 1) {
           return AddOpinionPage(
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             bottomindex = newbottomindex;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.reviews), label: 'Opinie'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Dodaj opinie'),
           BottomNavigationBarItem(

@@ -1,14 +1,13 @@
-import 'package:best_burgers/app/home/home_page_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({
     Key? key,
-    required this.widget,
+    required this.email,
   }) : super(key: key);
 
-  final HomePage widget;
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class AccountPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Jestes zalogowany ${widget.user.email}'),
+            Text('Jestes zalogowany ${email}'),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {

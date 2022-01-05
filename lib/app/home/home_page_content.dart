@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         if (bottomindex == 1) {
           return AddOpinionPage();
         }
-        return AccountPage(widget: widget);
+        return AccountPage(email: widget.user.email);
       }),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomindex,

@@ -1,5 +1,7 @@
+import 'package:best_burgers/app/home/bottom_bar_pages/opinion_page/cubit/opinion_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OpinionPage extends StatelessWidget {
   const OpinionPage({
@@ -13,37 +15,46 @@ class OpinionPage extends StatelessWidget {
         centerTitle: true,
         title: const Text('Ekran pierwszy'),
       ),
-      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: FirebaseFirestore.instance.collection('places').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Something went wrong');
-            }
+      body: BlocProvider(
+        create: (context) => OpinionCubit(),
+        child: BlocBuilder<OpinionCubit, OpinionState>(
+          builder: (context, state) {
+                  if (state.errorMessage.isNotEmpty) {
+                    return Text('Something went wrong: $state.errorMessage');
+                  }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Text("Loading");
-            }
-            final documents = snapshot.data!.docs;
-            return ListView(children: [
-              for (final document in documents) ...[
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(document['name']),
-                          Text(document['foodname']),
-                        ],
-                      ),
-                      Text(document['rating'].toString()),
-                    ],
-                  ),
-                )
-              ]
-            ]);
-          }),
+                  if (state.isLoading == true) {
+                    return Center(child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                        const Text("Loading"),
+                      ],
+                    ));
+                  }
+                  final documents = state.documents;
+                  return ListView(children: [
+                    for (final document in documents) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(document['name']),
+                                Text(document['foodname']),
+                              ],
+                            ),
+                            Text(document['rating'].toString()),
+                          ],
+                        ),
+                      )
+                    ]
+                  ]);
+                });
+          },
+        ),
+      ),
     );
   }
 }

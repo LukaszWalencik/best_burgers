@@ -1,6 +1,6 @@
-import 'package:best_burgers/app/home/bottom_bar_pages/account_page_content.dart';
-import 'package:best_burgers/app/home/bottom_bar_pages/add_opinion_page_content.dart';
-import 'package:best_burgers/app/home/bottom_bar_pages/opinion_page_content.dart';
+import 'package:best_burgers/app/bottom_bar_pages/account_page/account_page_content.dart';
+import 'package:best_burgers/app/bottom_bar_pages/add_opinion_page/add_opinion_page_content.dart';
+import 'package:best_burgers/app/bottom_bar_pages/opinion_page/opinion_page_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

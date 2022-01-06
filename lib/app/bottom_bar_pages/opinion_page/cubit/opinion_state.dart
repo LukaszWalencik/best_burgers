@@ -6,7 +6,7 @@ class OpinionState {
   final bool isLoading;
   final String errorMessage;
 
-  OpinionState({
+  const OpinionState({
     required this.documents,
     required this.isLoading,
     required this.errorMessage,

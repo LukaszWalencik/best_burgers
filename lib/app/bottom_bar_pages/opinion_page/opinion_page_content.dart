@@ -26,9 +26,9 @@ class OpinionPage extends StatelessWidget {
               return Center(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   CircularProgressIndicator(),
-                  const Text("Loading"),
+                  Text("Loading"),
                 ],
               ));
             }

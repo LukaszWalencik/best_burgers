@@ -8,7 +8,7 @@ part 'opinion_state.dart';
 
 class OpinionCubit extends Cubit<OpinionState> {
   OpinionCubit()
-      : super(OpinionState(
+      : super(const OpinionState(
           documents: [],
           errorMessage: '',
           isLoading: false,
@@ -18,10 +18,10 @@ class OpinionCubit extends Cubit<OpinionState> {
 
   Future<void> startapp() async {
     emit(
-      OpinionState(documents: [], isLoading: true, errorMessage: ''),
+      const OpinionState(documents: [], isLoading: true, errorMessage: ''),
     );
 
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
 
     _streamSubscription = FirebaseFirestore.instance
         .collection('places')
@@ -35,7 +35,9 @@ class OpinionCubit extends Cubit<OpinionState> {
       ..onError((error) {
         emit(
           OpinionState(
-              documents: [], isLoading: false, errorMessage: error.toString()),
+              documents: const [],
+              isLoading: false,
+              errorMessage: error.toString()),
         );
       });
   }
